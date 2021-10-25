@@ -3,8 +3,8 @@ POST http://localhost:5000/api/user
 Content-Type: application/json
 
 {
-    "username": "Maria",
-    "email": "maria@gmail.com",
+    "username": "deletino",
+    "email": "deletino@gmail.com",
     "password": "123456"
 }
 
@@ -13,8 +13,50 @@ POST http://localhost:5000/api/login
 Content-Type: application/json
 
 {
-    "email": "carlos@gmail.com",
+    "email": "deletino@gmail.com",
     "password": "123456"
 }
 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+###
+POST http://localhost:5000/api/movie/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+{
+    "title": "minusculo",
+    "description": "The sound of silence",
+    "genre": "Comedy"
+}
+
+###
+POST http://localhost:5000/api/user/1/movie/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+###
+GET http://localhost:5000/api/user/2/movie
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+###
+PUT http://localhost:5000/api/movie/update/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+{
+    "title": "NOVO title",
+    "description": "The sound of screams",
+    "genre": "Comedy"
+}
+
+###
+DELETE http://localhost:5000/api/movie/delete/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+###
+POST http://localhost:5000/api/user/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+
+
