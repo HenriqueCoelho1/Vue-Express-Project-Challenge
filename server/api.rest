@@ -1,10 +1,10 @@
 ###
-POST http://localhost:5000/api/user
+POST http://localhost:5000/api/register
 Content-Type: application/json
 
 {
-    "username": "deletino",
-    "email": "deletino@gmail.com",
+    "username": "Pedro",
+    "email": "pedro@gmail.com",
     "password": "123456"
 }
 

@@ -1,15 +1,19 @@
 <template>
-  <PostComponent msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <Navbar />
+    <router-view />
+  </div>
 </template>
 
 <script>
-import PostComponent from './components/PostComponent.vue'
-
+import Navbar from "./components/Navbar.vue"
 export default {
   name: 'App',
   components: {
-    PostComponent
+    Navbar
   }
 }
 </script>
 
+<style>
+</style>
