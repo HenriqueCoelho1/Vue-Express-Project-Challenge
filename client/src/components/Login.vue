@@ -1,14 +1,14 @@
 <template>
     <div class="container py-3 col-md-4">
-        <form @submit="handleSubmit" ref="form">
+        <form @submit.prevent="handleSubmit">
             <h3 class="text-center">Login</h3>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Type your email here" />
+                <input type="email" class="form-control" v-model="email" placeholder="Type your email here" />
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" placeholder="Type your password here" />
+                <input type="password" class="form-control" v-model="password" placeholder="Type your password here" />
             </div>
             <br />
             <button class="btn btn-primary col-12">Login</button>
@@ -17,12 +17,24 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
     name: "Login",
+    data(){
+        return {
+            email: "",
+            password: ""
+        }
+    },
     methods: {
-        handleSubmit(e){
-            e.preventDefault()
-            console.log("Testintg")
+        async handleSubmit(){
+            const data  = {
+                email: this.email,
+                passsword: this.password
+            }
+            const response = await axios.post("http://localhost:5000/api/login", data)
+            localStorage.setItem("token", response.data.accessToken)
+            console.log(response)
         }
     }
 }

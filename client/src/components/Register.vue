@@ -37,20 +37,15 @@ export default {
         }
     },
     methods: {
-        handleSubmit(){
+        async handleSubmit(){
             const data = {
                 username: this.username,
                 email: this.email,
                 password: this.password
             }
+            await axios.post("http://localhost:5000/api/register", data)
 
-            axios.post("http://localhost:5000/api/register", data)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            this.$router.push("/login")
         }
     }
 

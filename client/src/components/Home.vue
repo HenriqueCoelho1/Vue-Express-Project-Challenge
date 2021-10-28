@@ -4,8 +4,21 @@
     </div>
 </template>
 <script>
+import axios from "axios"
 export default {
-    name: "Home"
+    name: "Home",
+    data(){
+        return {
+            info: null
+        }
+    },
+    mounted () {
+    axios.get("http://localhost:5000/api/user").then(res => {
+        this.info = res.data,
+        console.log(res.data)
+    })
+    }
+    
     
 }
 </script>
