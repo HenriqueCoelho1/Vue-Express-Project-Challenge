@@ -43,7 +43,9 @@ router.post("/login", async (req, res) => {
 
             (async () => {
                 const validPassword = await bcrypt.compare(password, users.rows[0].password)
-                if (!validPassword) return res.status(401).json({ error: "Error in the credentials" })
+                if (!validPassword) {
+                    return res.status(401).json({ error: "Error in the credentials" })
+                }
             })
         let tokens = jwtTokens(users.rows[0])
         res.json(tokens)

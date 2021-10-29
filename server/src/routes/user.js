@@ -1,13 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const pool = require("../db")
-const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const { check, validationResult } = require("express-validator")
 const authentication = require("../middleware/auth")
 
 
-router.get("/user", async (req, res) => {
+router.get("/user", [authentication], async (req, res) => {
     const getAllMovies = await pool.query("SELECT * FROM movies")
     if (getAllMovies.rows.length === 0) return res.json({ message: "No data found" })
     res.json(getAllMovies.rows)

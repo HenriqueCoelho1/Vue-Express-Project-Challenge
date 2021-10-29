@@ -13,7 +13,11 @@ export default {
         }
     },
     mounted () {
-    axios.get("http://localhost:5000/api/user").then(res => {
+    axios.get("http://localhost:5000/api/user", {
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+        }
+    }).then(res => {
         this.info = res.data,
         console.log(res.data)
     })

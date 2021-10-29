@@ -6,11 +6,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <router-link class="btn btn-primary mx-2" to="/">Home</router-link>
+            <router-link class="btn btn-primary mx-2" to="/login">Sign in</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="btn btn-info" to="/create/movie">Create Movie</router-link>
+            <router-link class="btn btn-outline-secondary mx-2" to="/register">Sign up</router-link>
           </li>
+          <!-- <li class="nav-item">
+            <router-link class="btn btn-info" to="/create/movie">Create Movie</router-link>
+          </li> -->
         </ul>
       </div>
     </div>
