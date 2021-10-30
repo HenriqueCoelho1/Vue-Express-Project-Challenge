@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from "../components/Home"
 import Login from "../components/Login"
 import Register from "../components/Register"
-import Create from "../components/Create"
 import Movie from "../components/Movie"
+import MovieCreate from "../components/MovieCreate"
 
 const routes = [
     {
@@ -12,9 +12,9 @@ const routes = [
         component: Home
     },
     {
-        path: "/create/movie",
-        name: "create",
-        component: Create,
+        path: "/movies/create",
+        name: "movies_create",
+        component: MovieCreate,
     },
     {
         path: "/login",

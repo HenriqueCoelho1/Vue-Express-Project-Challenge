@@ -1,11 +1,19 @@
 <template lang="">
     <div>
-        <div class="container py-3 col-md-4">
-            <h3 class="text-center">Your movies</h3>
-            <div v-for="movie in movies" :key="movie.id">
-                {{movie.title}}
-                {{movie.description}}
-                {{movie.genre}}
+        <div class="container py-3">
+            <h3 class="text-center">Movies</h3>
+            <br />
+            <div class="row">
+                <div class="col-md-3" v-for="movie in movies" :key="movie.id">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{movie.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{movie.genre}}</h6>
+                            <p class="card-text">{{movie.description}}</p>
+                            <router-link class="btn btn-info" to="/movies">See more</router-link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

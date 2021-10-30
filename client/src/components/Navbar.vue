@@ -2,6 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <router-link class="navbar-brand text-style" to="/">Movie List</router-link>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <router-link v-if="!$store.state.isUserLoggedIn" class="btn btn-secondary mx-2" to="/movies">Movies</router-link>
+        </li>
+      </ul>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
