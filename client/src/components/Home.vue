@@ -4,26 +4,8 @@
     </div>
 </template>
 <script>
-import axios from "axios"
 export default {
-    name: "Home",
-    data(){
-        return {
-            info: null
-        }
-    },
-    mounted () {
-    axios.get("http://localhost:5000/api/user", {
-        headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-        }
-    }).then(res => {
-        this.info = res.data,
-        console.log(res.data)
-    })
-    }
-    
-    
+    name: "Home"
 }
 </script>
 <style lang="">

@@ -47,8 +47,8 @@ router.post("/login", async (req, res) => {
                 }
             })
 
-        const user = await pool.query("SELECT id, username, email FROM users WHERE email = $1", [email])
-        const actualUser = user.rows[0]
+        const actualUser = users.rows[0]
+        delete actualUser.password
         let tokens = jwtTokens(users.rows[0])
         res.send({
             actualUser,

@@ -6,7 +6,7 @@ const { check, validationResult } = require("express-validator")
 const authentication = require("../middleware/auth")
 
 
-router.get("/user", [authentication], async (req, res) => {
+router.get("/movies", [authentication], async (req, res) => {
     const getAllMovies = await pool.query("SELECT * FROM movies")
     if (getAllMovies.rows.length === 0) return res.json({ message: "No data found" })
     res.json(getAllMovies.rows)

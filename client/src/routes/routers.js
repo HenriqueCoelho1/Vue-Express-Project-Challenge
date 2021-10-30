@@ -3,7 +3,8 @@ import Home from "../components/Home"
 import Login from "../components/Login"
 import Register from "../components/Register"
 import Create from "../components/Create"
-import store from "../store"
+import Movie from "../components/Movie"
+
 const routes = [
     {
         path: "/",
@@ -14,20 +15,22 @@ const routes = [
         path: "/create/movie",
         name: "create",
         component: Create,
-        meta: { auth: true }
     },
     {
         path: "/login",
         name: "login",
         component: Login,
-        meta: { auth: false }
     },
     {
         path: "/register",
         name: "register",
         component: Register,
-        meta: { auth: false }
     },
+    {
+        path: "/movies",
+        name: "movies",
+        component: Movie,
+    }
 ]
 
 const router = createRouter({
@@ -35,15 +38,5 @@ const router = createRouter({
     routes,
 })
 
-
-router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth) {
-        if (!store.token) {
-            next()
-        }
-    } else {
-        next()
-    }
-})
 
 export default router

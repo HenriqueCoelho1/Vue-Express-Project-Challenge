@@ -5,11 +5,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+          <li class="nav-item" v-if="!$store.state.isUserLoggedIn">
             <router-link class="btn btn-primary mx-2" to="/login">Sign in</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!$store.state.isUserLoggedIn">
             <router-link class="btn btn-outline-secondary mx-2" to="/register">Sign up</router-link>
+          </li>
+          <li class="nav-item" v-if="$store.state.isUserLoggedIn">
+            <v-btn class="btn btn-outline-dark mx-2" @click="logout">Log out</v-btn>
           </li>
           <!-- <li class="nav-item">
             <router-link class="btn btn-info" to="/create/movie">Create Movie</router-link>
@@ -22,7 +25,15 @@
 </template>
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  methods: {
+    logout(){
+      this.$store.dispatch("setToken", null)
+      this.$store.dispatch("setUser", null)
+      localStorage.removeItem("token")
+      this.$router.push("/login")
+    }
+  }
 }
 </script>
 

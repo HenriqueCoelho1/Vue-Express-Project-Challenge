@@ -17,26 +17,34 @@
 </template>
 
 <script>
-import Auth from "../services/Auth"
+import Auth from "../services/Auth.js"
 export default {
     name: "Login",
     data(){
         return {
             email: "",
-            password: ""
+            password: "",
+            error: null
         }
     },
     methods: {
         async handleSubmit(){
-            const data  = {
+            try {
+                const data  = {
                 email: this.email,
                 passsword: this.password
             }
             const response = await Auth.login(data)
             localStorage.setItem("token", response.data.tokens.accessToken)
-            // this.setUser(this.email)
-            // this.setToken(response.data.accessToken)
-            this.$router.push("/")
+            this.$store.dispatch("setToken", response.data.tokens.accessToken)
+            console.log(response.data.actualUser)
+            this.$store.dispatch("setUser", response.data.actualUser)
+            this.$router.push("/movies")
+            } catch (err) {
+                this.error = err.response.data.error
+                
+            }
+            
         }
     }
 }
