@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from "axios"
+import Auth from "../services/Auth"
 export default {
     name: "Register",
     data(){
@@ -43,8 +43,9 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            await axios.post("http://localhost:5000/api/register", data)
-
+            const response = await Auth.register(data)
+            
+            console.log(response)
             this.$router.push("/login")
         }
     }

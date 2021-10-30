@@ -40,15 +40,20 @@ router.post("/login", async (req, res) => {
         const { email, password } = req.body
         const users = await pool.query("SELECT * FROM users WHERE email = $1", [email])
         if (users.rows.length === 0) return res.status(401).json({ error: "Error in the credentials" })
-
             (async () => {
                 const validPassword = await bcrypt.compare(password, users.rows[0].password)
                 if (!validPassword) {
                     return res.status(401).json({ error: "Error in the credentials" })
                 }
             })
+
+        const user = await pool.query("SELECT id, username, email FROM users WHERE email = $1", [email])
+        const actualUser = user.rows[0]
         let tokens = jwtTokens(users.rows[0])
-        res.json(tokens)
+        res.send({
+            actualUser,
+            tokens
+        })
 
     } catch (err) {
         console.log(err)
