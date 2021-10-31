@@ -26,7 +26,7 @@ const store = new Vuex.Store({
         setUser({ commit }, user) {
             commit("setUser", user)
         }
-    }
+    },
 })
 
 export default store

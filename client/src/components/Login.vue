@@ -31,18 +31,17 @@ export default {
         async handleSubmit(){
             try {
                 const data  = {
-                email: this.email,
-                passsword: this.password
-            }
-            const response = await Auth.login(data)
-            localStorage.setItem("token", response.data.tokens.accessToken)
-            this.$store.dispatch("setToken", response.data.tokens.accessToken)
-            console.log(response.data.actualUser)
-            this.$store.dispatch("setUser", response.data.actualUser)
-            this.$router.push("/movies")
+                    email: this.email,
+                    passsword: this.password
+                }
+                const response = await Auth.login(data)
+                localStorage.setItem("token", response.data.tokens.accessToken)
+                this.$store.dispatch("setToken", response.data.tokens.accessToken)
+                console.log(response.data.actualUser)
+                this.$store.dispatch("setUser", response.data.actualUser)
+                this.$router.push("/movies")
             } catch (err) {
                 this.error = err.response.data.error
-                
             }
             
         }

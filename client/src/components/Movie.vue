@@ -10,7 +10,9 @@
                             <h5 class="card-title">{{movie.title}}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{movie.genre}}</h6>
                             <p class="card-text">{{movie.description}}</p>
-                            <router-link class="btn btn-info" to="/movies">See more</router-link>
+                            <v-btn 
+                            @click="navigateTo({name: 'movies', params: movie.id})" 
+                            class="btn btn-info">See more</v-btn>
                         </div>
                     </div>
                 </div>
@@ -26,6 +28,11 @@ export default {
             movies: null 
         }
     },
+    methods: {
+        navigateTo(route){
+            this.$router.push(`/${route.name}/${route.params}`)
+        }
+    },
     mounted () {
         const dataToken = {
             headers: {
@@ -37,6 +44,7 @@ export default {
         console.log(res.data)
         })
     }
+    
 }
 </script>
 <style lang="">

@@ -4,6 +4,7 @@ import Login from "../components/Login"
 import Register from "../components/Register"
 import Movie from "../components/Movie"
 import MovieCreate from "../components/MovieCreate"
+import MovieView from "../components/MovieView"
 
 const routes = [
     {
@@ -30,7 +31,12 @@ const routes = [
         path: "/movies",
         name: "movies",
         component: Movie,
-    }
+    },
+    {
+        path: "/movies/:movieId",
+        name: "movies-view",
+        component: MovieView,
+    },
 ]
 
 const router = createRouter({
