@@ -50,8 +50,14 @@ export default {
         
     },
     async mounted(){
-        const movieId = this.$store.route.params.movieId
-        const movie = await MovieServices.getMovie(movieId) 
+        const dataToken = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        }
+        const movieId = this.$store.state.route.params.movieId
+        console.log(dataToken)
+        const movie = await MovieServices.getMovie(movieId, dataToken) 
         console.log(movie)
     }
 }

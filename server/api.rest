@@ -39,6 +39,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
 
 ###
+GET http://localhost:5000/api/movie/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s
+
+###
 PUT http://localhost:5000/api/movie/update/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NAZ21haWwuY29tIiwiaWF0IjoxNjM1MDQ5MTgzLCJleHAiOjE2Mzc2NDExODN9.iqykOfW3T312CagKg786rHeaGkJgECg3KnBaTshRE0s

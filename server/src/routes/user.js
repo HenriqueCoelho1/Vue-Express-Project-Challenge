@@ -87,6 +87,20 @@ router.get("/user/:user_id/movie", authentication, async (req, res) => {
     }
 })
 
+router.get("/movie/:movie_id", authentication, async (req, res) => {
+    try {
+        const { movie_id } = req.params
+        const movie_id_int = parseInt(movie_id)
+
+        const movie = await pool.query("SELECT * FROM movies WHERE id = $1", [movie_id_int])
+
+        res.status(200).json(movie.rows[0])
+
+    } catch (err) {
+        console.log("Error to get user movies", err)
+    }
+})
+
 router.get("/user/:user_id/movie/:movie_id", authentication, async (req, res) => {
 
     try {
