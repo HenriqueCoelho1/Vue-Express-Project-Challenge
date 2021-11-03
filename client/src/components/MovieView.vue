@@ -14,6 +14,8 @@
                             <p class="card-text">{{movie.description}}</p>
                             <a class="btn btn-info" 
                             @click="navigateTo({name: 'movies', params: movie.id})">Update this movie</a>
+                            <a class="btn btn-info" 
+                            @click="addToList">Add this movie to your list</a>
                         </div>
                     </div>
                 </div>
@@ -36,6 +38,10 @@ export default {
     methods:{
         navigateTo(route){
             this.$router.push(`/${route.name}/update/${route.params}`)
+        },
+        addToList(e){
+            e.prenvetDefault()
+            
         }
         
     },

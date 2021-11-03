@@ -14,4 +14,7 @@ export default {
         console.log(movieUpdate)
         return Api().put(`movie/update/${movieId}`, movieUpdate, dataToken)
     },
+    addMovieToList(userId, movieId, dataToken) {
+        return Api().post(`user/${userId}/movie/${movieId}`, dataToken)
+    }
 }
