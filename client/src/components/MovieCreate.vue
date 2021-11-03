@@ -70,8 +70,8 @@ export default {
             return
           }
           const response = await MovieServices.createMovies(movie, dataToken)
-          this.$router.push("/movies")
-          console.log(response)
+          // this.$router.push("/movies")
+          console.log(response.data)
         } catch (error) {
           console.log(error)
         }

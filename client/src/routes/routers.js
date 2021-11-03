@@ -40,7 +40,7 @@ const routes = [
     },
     {
         path: "/movies/update/:movieId",
-        name: "movies-view",
+        name: "movies-update",
         component: MovieUpdate,
     },
 ]

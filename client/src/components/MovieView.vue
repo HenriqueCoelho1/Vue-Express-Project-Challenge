@@ -25,7 +25,7 @@
 <script>
 import MovieServices from "../services/MovieServices"
 export default {
-    name: "Create",
+    name: "MovieView",
     data(){
     return {
         movie: {},

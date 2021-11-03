@@ -129,7 +129,7 @@ router.put("/movie/update/:movie_id", [
     check("title").isString().isLength({ min: 2, max: 200 }).trim(),
     check("description").isLength({ min: 2 }).trim(),
     check("genre").isAlpha().isLength({ min: 2, max: 200 }).trim()
-], authentication, async (req, res) => {
+], async (req, res) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {

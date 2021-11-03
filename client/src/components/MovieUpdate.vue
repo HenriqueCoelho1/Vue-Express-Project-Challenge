@@ -2,12 +2,13 @@
     <div class="container py-3 col-md-4">
         <form @submit.prevent="update">
             <h3 class="text-center">Update a Movie</h3>
-            <div class="alert alert-danger" v-if="error" role="alert">
+            <!-- <div class="alert alert-danger" v-if="error" role="alert">
                 {{error}}
-            </div>
+            </div> -->
             <div class="form-group">
                 <label>Title</label>
                 <input type="text" 
+                name="title"
                 class="form-control" 
                 v-model="movie.title"
                 placeholder="Type your username here" />
@@ -15,13 +16,19 @@
             <div class="form-group">
                 <label>Description</label>
                 <input type="text"
+                name="description"
                 class="form-control"
                 v-model="movie.description" 
                 placeholder="Type your email here" />
             </div>
             <div class="form-group">
                 <label>Genre</label>
-                <select v-model="movie.genre" class="form-select">
+                <input type="text"
+                name="description"
+                class="form-control"
+                v-model="movie.genre" 
+                placeholder="Type your email here" />
+                <!-- <select v-model="movie.genre" name="genre" class="form-select">
                     <option select>{{movie.genre}}</option>
                     <option value="Comedy">Comedy</option>
                     <option value="Sci-fi">Sci-fi</option>
@@ -30,7 +37,7 @@
                     <option value="Horror">Horror</option>
                     <option value="Romance">Romance</option>
                     <option value="Noir">Noir</option>
-                </select>
+                </select> -->
             </div>
             <br />
             <button class="btn btn-secondary col-12">Update</button>
@@ -41,24 +48,26 @@
 <script>
 import MovieServices from "../services/MovieServices"
 export default {
-    name: "Create",
+    name: "MovieUpdate",
     data(){
     return {
-        movie: {},
-        error: null,
-        required: (value) => !!value || "Required"
+        movie: {
+            title: "",
+            description: "",
+            genre: ""
+        },
+        // error: null,
+        // required: (value) => !!value || "Required"
         }
     },
     methods:{
         async update(){
-            // const movie = {
-            //     title: this.title,
-            //     description: this.description,
-            //     genre: this.genre
-            // }
-            // console.log(this.title)
-            // console.log(this.description)
-            console.log(this.movie)
+            const movieUpdate = {
+                title: this.movie.title,
+                description: this.movie.description,
+                genre: this.movie.genre
+            }
+            console.log(movieUpdate)
             const dataToken = {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
@@ -66,14 +75,13 @@ export default {
             }
             try {
                 const movieId = this.$store.state.route.params.movieId
-                const response = await MovieServices.updateMovie(movieId, this.movie, dataToken)
+                const response = await MovieServices.updateMovie(movieId, movieUpdate, dataToken)
                 this.$router.push("/movies")
                 console.log(response)
+                
             } catch (err) {
                 console.log(err)
             }
-
-
         }
         
     },
@@ -84,8 +92,9 @@ export default {
             }
         }
         const movieId = this.$store.state.route.params.movieId
-        console.log(dataToken)
-        this.movie = (await MovieServices.getMovie(movieId, dataToken)).data
+        const result = await MovieServices.getMovie(movieId, dataToken)
+        console.log(result.data)
+        this.movie = result.data
     }
 }
 </script>
