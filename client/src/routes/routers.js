@@ -5,6 +5,7 @@ import Register from "../components/Register"
 import Movie from "../components/Movie"
 import MovieCreate from "../components/MovieCreate"
 import MovieView from "../components/MovieView"
+import MovieUpdate from "../components/MovieUpdate"
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: "/movies/:movieId",
         name: "movies-view",
         component: MovieView,
+    },
+    {
+        path: "/movies/update/:movieId",
+        name: "movies-view",
+        component: MovieUpdate,
     },
 ]
 

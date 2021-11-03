@@ -7,7 +7,10 @@ export default {
     getMovie(movieId, dataToken) {
         return Api().get(`movie/${movieId}`, dataToken)
     },
-    createMovies(movieId, dataToken) {
-        return Api().post("movie/create", movieId, dataToken)
+    createMovies(movie, dataToken) {
+        return Api().post("movie/create", movie, dataToken)
+    },
+    updateMovie(movieId, movie, dataToken) {
+        return Api().put(`movie/update/${movieId}`, movie, dataToken)
     },
 }

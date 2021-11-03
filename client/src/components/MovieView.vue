@@ -1,33 +1,24 @@
 <template>
-    <div class="container py-3 col-md-4">
-        <form @submit.prevent="create">
-            <h3 class="text-center">Create Movie</h3>
-            <div class="alert alert-danger" v-if="error" role="alert">
-                {{error}}
-            </div>
-            <div class="form-group">
-                <label>Title</label>
-                <input type="text" :rules="[required]" class="form-control" v-model="title" placeholder="Type your username here" />
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <input type="text" :rules="[required]" class="form-control" v-model="description" placeholder="Type your email here" />
-            </div>
-            <div class="form-group">
-                <label>Genre</label>
-                <select :rules="[required]" class="form-select" v-model="genre">
-                    <option value="Comedy">Comedy</option>
-                    <option value="Sci-fi">Sci-fi</option>
-                    <option value="Children">Children</option>
-                    <option value="Action">Action</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Noir">Noir</option>
-                </select>
-            </div>
+    <div>
+        <div class="container py-3">
+            <h3 class="text-center">Movies</h3>
             <br />
-            <button class="btn btn-primary col-12">Create</button>
-        </form>
+            <div class="row">
+                <div class="offset-3 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            {{movie.title}}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{movie.genre}}</h5>
+                            <p class="card-text">{{movie.description}}</p>
+                            <a class="btn btn-info" 
+                            @click="navigateTo({name: 'movies', params: movie.id})">Update this movie</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -37,16 +28,15 @@ export default {
     name: "Create",
     data(){
     return {
-        movie: {
-            title: null,
-            description: null,
-            genre: null
-        },
+        movie: {},
         error: null,
         required: (value) => !!value || "Required"
         }
     },
     methods:{
+        navigateTo(route){
+            this.$router.push(`/${route.name}/update/${route.params}`)
+        }
         
     },
     async mounted(){
@@ -57,8 +47,7 @@ export default {
         }
         const movieId = this.$store.state.route.params.movieId
         console.log(dataToken)
-        const movie = await MovieServices.getMovie(movieId, dataToken) 
-        console.log(movie)
+        this.movie = (await MovieServices.getMovie(movieId, dataToken)).data
     }
 }
 </script>
