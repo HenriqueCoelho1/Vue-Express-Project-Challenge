@@ -2,7 +2,17 @@ import Vuex from "vuex"
 
 const store = new Vuex.Store({
     state: {
-        user: null,
+        user: {
+            id: null,
+            email: null,
+            username: null
+        },
+        movies: {
+            id: null,
+            title: null,
+            description: null,
+            genre: null
+        },
         token: null,
         isUserLoggedIn: false
     },
@@ -18,6 +28,9 @@ const store = new Vuex.Store({
         setUser(state, user) {
             state.user = user
         },
+        setMovies(state, movies) {
+            state.movies = movies
+        }
     },
     actions: {
         setToken({ commit }, token) {
@@ -25,8 +38,20 @@ const store = new Vuex.Store({
         },
         setUser({ commit }, user) {
             commit("setUser", user)
+        },
+        setMovies({ commit }, movies) {
+            commit("setMovies", movies)
         }
     },
+    getters: {
+        userInfo(state) {
+            return state.user,
+                console.log("GETTERS STATE ", state.user.username)
+        },
+        allMovies(state) {
+            return state.movies
+        }
+    }
 })
 
 export default store

@@ -2,6 +2,7 @@
     <div>
         <div class="container py-3">
             <h3 class="text-center">Movies</h3>
+            {{$store.getters.userInfo}}
             <br />
             <div class="row">
                 <div class="col-md-3" v-for="movie in movies" :key="movie.id">
@@ -40,7 +41,8 @@ export default {
             }
         }
     MovieServices.getMovies(dataToken).then(res => {
-        this.movies = res.data,
+        this.$store.dispatch("setMovies", res.data),
+        this.movies = this.$store.getters.allMovies
         console.log(res.data)
         })
     }

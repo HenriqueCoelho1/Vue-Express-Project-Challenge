@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { sync } from "vuex-router-sync"
-import router from "./routes/routers"
+import router from "./routes/index"
 import store from "./store"
 
 // import "./axios"
