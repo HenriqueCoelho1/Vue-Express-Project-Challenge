@@ -45,8 +45,7 @@ const store = new Vuex.Store({
     },
     getters: {
         userInfo(state) {
-            return state.user,
-                console.log("GETTERS STATE ", state.user.username)
+            return state.user
         },
         allMovies(state) {
             return state.movies

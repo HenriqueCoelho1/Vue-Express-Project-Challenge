@@ -2,7 +2,7 @@
     <div>
         <div class="container py-3">
             <h3 class="text-center">Movies</h3>
-            {{$store.getters.userInfo}}
+            <p>{{this.$store.getters.userInfo}}</p>
             <br />
             <div class="row">
                 <div class="col-md-3" v-for="movie in movies" :key="movie.id">
@@ -26,7 +26,8 @@ import MovieServices from "../services/MovieServices"
 export default {
     data (){
         return {
-            movies: null 
+            movies: null,
+            user: null
         }
     },
     methods: {
@@ -35,6 +36,7 @@ export default {
         }
     },
     mounted () {
+        this.user = this.$store.getters.userInfo
         const dataToken = {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
