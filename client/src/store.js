@@ -1,5 +1,8 @@
 import Vuex from "vuex"
+import createPersistedState from "vuex-persistedstate"
+// import SecureLS from "secure-ls"
 
+// const ls = new SecureLS({ isCompression: false })
 const store = new Vuex.Store({
     state: {
         user: {
@@ -50,7 +53,18 @@ const store = new Vuex.Store({
         allMovies(state) {
             return state.movies
         }
-    }
+    },
+    plugins: [
+        createPersistedState({
+            key: "name",
+            paths: ["user", "token", "isUserLoggedIn", "movies"],
+            // storage: {
+            //     getItem: (key) => ls.get(key),
+            //     setItem: (key, value) => ls.set(key, value),
+            //     removeItem: (key) => ls.remove(key)
+            // }
+        })
+    ]
 })
 
 export default store
