@@ -74,14 +74,14 @@ export default {
                 }
             }
             try {
-                const areAllFieldsFilled = Object
-                .keys(this.movie)
-                .every(key => !!movieUpdate[key])
-                if(!areAllFieldsFilled){
-                    console.log(areAllFieldsFilled)
-                    this.error = "Please filled in all fields"
-                    return
-                }
+                // const areAllFieldsFilled = Object
+                // .keys(this.movie)
+                // .every(key => !!movieUpdate[key])
+                // if(!areAllFieldsFilled){
+                //     console.log(areAllFieldsFilled)
+                //     this.error = "Please filled in all fields"
+                //     return
+                // }
                 const movieId = this.$store.state.route.params.movieId
                 const response = await MovieServices.updateMovie(movieId, movieUpdate, dataToken)
                 this.$router.push("/movies")

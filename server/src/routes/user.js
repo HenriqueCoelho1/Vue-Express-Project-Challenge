@@ -50,7 +50,7 @@ router.post("/user/:user_id/movie/:movie_id", authentication, async (req, res) =
         const authorization = req.headers.authorization.split(" ")[1]
         const decoded = jwt.verify(authorization, process.env.SECRET_KEY)
         const userTokenId = decoded.id
-        if (userTokenId !== user_id_int) return res.status(401).send("Unauthorized")
+        if (userTokenId !== user_id_int) return res.status(401).send("Unauthorized, wrong token")
         //verify if the movie is already exist
         const exist = await pool.query("SELECT * FROM users_movies WHERE users = $1 AND movies = $2",
             [user_id_int, movie_id_int])

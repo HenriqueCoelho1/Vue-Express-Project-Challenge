@@ -14,7 +14,7 @@
                             <p class="card-text">{{movie.description}}</p>
                             <a class="btn btn-info" 
                             @click="navigateTo({name: 'movies', params: movie.id})">Update this movie</a>
-                            <a class="btn btn-info" 
+                            <a class="btn btn-info ms-2" 
                             @click="addToList">Add this movie to your list</a>
                         </div>
                     </div>
@@ -39,8 +39,29 @@ export default {
         navigateTo(route){
             this.$router.push(`/${route.name}/update/${route.params}`)
         },
-        addToList(e){
-            e.prenvetDefault()
+        async addToList(e){
+            e.preventDefault()
+            const thisToken = {
+                headers: {
+                    Authorization: "Bearer " + this.$store.getters.userInfo.token
+                }
+            }
+            try {
+                const movieId = this.$store.state.route.params.movieId
+                const userId = this.$store.getters.userInfo.id
+                console.log(movieId)
+                console.log(userId)
+                const response = await MovieServices.addMovieToList(userId, movieId, thisToken)
+                console.log(thisToken)
+                this.$router.push("/movies")
+                console.log(response)
+                
+            } catch (err) {
+                console.log(err)
+                
+            }
+            
+
             
         }
         
