@@ -15,7 +15,7 @@
                             <a class="btn btn-info" 
                             @click="navigateTo({name: 'movies', params: movie.id})">Update this movie</a>
                             <a class="btn btn-info ms-2" 
-                            @click="addToList">Add this movie to your list</a>
+                            @click.prevent="addToList">Add this movie to your list</a>
                         </div>
                     </div>
                 </div>
@@ -36,40 +36,41 @@ export default {
         }
     },
     methods:{
-        navigateTo(route){
-            this.$router.push(`/${route.name}/update/${route.params}`)
-        },
-        async addToList(e){
-            e.preventDefault()
-            const thisToken = {
-                headers: {
-                    Authorization: "Bearer " + this.$store.getters.userInfo.token
-                }
+        async addToList(){
+            const dataToken = {
+            headers: {
+                Authorization: "Bearer " + this.$store.getters.getToken
             }
+            }
+            
             try {
                 const movieId = this.$store.state.route.params.movieId
                 const userId = this.$store.getters.userInfo.id
                 console.log(movieId)
                 console.log(userId)
-                const response = await MovieServices.addMovieToList(userId, movieId, thisToken)
-                console.log(thisToken)
-                this.$router.push("/movies")
+                const response = await MovieServices.addMovieToList(userId, movieId, dataToken)
+                console.log(dataToken)
                 console.log(response)
+                this.$router.push("/movies")
+               
                 
             } catch (err) {
                 console.log(err)
                 
             }
             
-
-            
+        },
+        
+        navigateTo(route){
+            this.$router.push(`/${route.name}/update/${route.params}`)
         }
+        
         
     },
     async mounted(){
         const dataToken = {
             headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + this.$store.getters.getToken
             }
         }
         const movieId = this.$store.state.route.params.movieId

@@ -57,20 +57,20 @@ export default {
         }
         const dataToken = {
             headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + this.$store.getters.getToken
             }
         }
         try {
-          const areAllFieldsFilled = Object
-          .keys(this.movie)
-          .every(key => !!movie[key])
-          if(!areAllFieldsFilled){
-            console.log(areAllFieldsFilled)
-            this.error = "Please filled in all fields"
-            return
-          }
+          // const areAllFieldsFilled = Object
+          // .keys(this.movie)
+          // .every(key => !!movie[key])
+          // if(!areAllFieldsFilled){
+          //   console.log(areAllFieldsFilled)
+          //   this.error = "Please filled in all fields"
+          //   return
+          // }
           const response = await MovieServices.createMovies(movie, dataToken)
-          // this.$router.push("/movies")
+          this.$router.push("/movies")
           console.log(response.data)
         } catch (error) {
           console.log(error)
